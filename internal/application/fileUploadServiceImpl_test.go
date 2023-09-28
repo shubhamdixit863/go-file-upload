@@ -15,7 +15,7 @@ func TestInitAws(t *testing.T) {
 	assert.Nil(t, err)
 
 	config := aws.Config{
-		Region:      aws.String("us-west-2"),
+		Region:      aws.String(os.Getenv("REGION")),
 		Credentials: credentials.NewStaticCredentials(os.Getenv("AWS_ACCESS_KEY"), os.Getenv("AWS_ACCESS_SECRET"), ""),
 	}
 	sess := session.Must(session.NewSession(&config))

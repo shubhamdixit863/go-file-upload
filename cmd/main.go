@@ -15,7 +15,7 @@ import (
 
 func InitAws() *session.Session {
 	config := aws.Config{
-		Region:      aws.String("us-west-2"),
+		Region:      aws.String(os.Getenv("REGION")),
 		Credentials: credentials.NewStaticCredentials(os.Getenv("AWS_ACCESS_KEY"), os.Getenv("AWS_ACCESS_SECRET"), ""),
 	}
 	sess := session.Must(session.NewSession(&config))
@@ -36,13 +36,13 @@ func main() {
 
 	config.AllowOrigins = []string{"http://localhost:3000"}
 	config.AllowCredentials = true
-	config.AllowHeaders = []string{"Authorization"}
+	config.AllowHeaders = []string{"Authorization", "Content-Type", "x-requested-with", "X-Requested-With"}
 	fs := application.FileUploadServiceImpl{Aws: InitAws()}
 	handler := handlers.Handler{
 		FileUplaodService: &fs,
 	}
 	r.Use(cors.New(config))
 	r.POST("/upload", handler.UploadFile)
-	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	r.Run("0.0.0.0:8090") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 
 }
