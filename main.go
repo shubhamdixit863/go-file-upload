@@ -6,10 +6,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 	"goFileService/internal/api/handlers"
 	"goFileService/internal/application"
-	"log"
 	"os"
 )
 
@@ -24,11 +22,13 @@ func InitAws() *session.Session {
 }
 
 func main() {
+	/*
+		err := godotenv.Load("../.env")
+		if err != nil {
+			log.Fatal("Error loading .env file")
+		}
 
-	err := godotenv.Load("../.env")
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
+	*/
 	InitAws()
 
 	r := gin.Default()
