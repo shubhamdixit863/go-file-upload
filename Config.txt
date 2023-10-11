@@ -1,0 +1,64 @@
+Once you've set up an AWS EKS cluster, you'll need to configure `kubectl` to communicate with it. The following steps guide you through configuring `kubectl` for EKS:
+
+1. **Install `kubectl`** (If you haven't already):
+
+   For MacOS:
+   ```bash
+   brew install kubectl
+   ```
+
+   For Linux:
+   ```bash
+   curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+   chmod +x kubectl
+   sudo mv kubectl /usr/local/bin/
+   ```
+
+   For Windows:
+   - Install using [Chocolatey](https://chocolatey.org/):
+   ```bash
+   choco install kubernetes-cli
+   ```
+
+2. **Install the AWS CLI** (If you haven't already):
+https://aws.amazon.com/cli/
+
+   Installation instructions can be found on the [official AWS documentation](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html).
+
+3. **Install `aws-iam-authenticator`**:
+
+   AWS EKS uses `aws-iam-authenticator` to provide authentication to your Kubernetes cluster through AWS IAM.
+
+   Install using Homebrew (Mac):
+   ```bash
+   brew install aws-iam-authenticator
+   ```
+
+   Other installation methods can be found in the [official documentation](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html).
+
+4. **Configure AWS CLI**:
+
+   Set up your AWS credentials:
+   ```bash
+   aws configure
+   ```
+
+   Enter your AWS Access Key, Secret Key, default region (the region where your EKS cluster is), and the default output format.
+
+5. **Configure `kubectl` for EKS**:
+
+   Now, you can use the `aws` command to update your `kubectl` config:
+   ```bash
+   aws eks --region region-code update-kubeconfig --name cluster-name
+   ```
+
+   Replace `region-code` with your AWS region, and `cluster-name` with the name of your EKS cluster.
+
+6. **Verify Connection**:
+
+   After configuring `kubectl`, test your connection to the EKS cluster:
+   ```bash
+   kubectl get nodes
+   ```
+
+You should now see the nodes of your EKS cluster. If you encounter any issues, double-check the setup, especially IAM permissions and cluster access. Make sure the AWS user has the necessary permissions to EKS and the nodes.
