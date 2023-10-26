@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"goFileService/internal/application"
 	"net/http"
+	"os"
 	"path/filepath"
 )
 
@@ -48,6 +49,16 @@ func (h Handler) UploadFile(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"message":  "success",
 		"filePath": filePath,
+	})
+
+}
+
+func (h Handler) Status(c *gin.Context) {
+	/// Our handler to upload files
+
+	c.JSON(http.StatusOK, gin.H{
+		"message": "success",
+		"Bucket":  os.Getenv("BUCKET"),
 	})
 
 }

@@ -42,6 +42,7 @@ func main() {
 		FileUplaodService: &fs,
 	}
 	r.Use(cors.New(config))
+	r.GET("/", handler.Status)
 	r.POST("/upload", handler.UploadFile)
 	r.Run("0.0.0.0:8090") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 
