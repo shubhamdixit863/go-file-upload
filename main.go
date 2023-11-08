@@ -34,7 +34,7 @@ func main() {
 	r := gin.Default()
 	config := cors.DefaultConfig()
 
-	config.AllowOrigins = []string{"http://localhost:3000"}
+	config.AllowOrigins = []string{"*"}
 	config.AllowCredentials = true
 	config.AllowHeaders = []string{"Authorization", "Content-Type", "x-requested-with", "X-Requested-With"}
 	fs := application.FileUploadServiceImpl{Aws: InitAws()}

@@ -58,10 +58,10 @@ spec:
 
   ports:
     - name: http #just a label
-      port: 8090   #internal port of the cluster in which pod is running
-      nodePort: 30080  # only be user when type is NodePort should be greater than 30000
+      port: 80   #internal port of the cluster in which pod is running
+      targetPort: 8090  # only be user when type is NodePort should be greater than 30000
 
-  type: NodePort
+  type: LoadBalancer
 
 
 
@@ -72,7 +72,7 @@ kind: ConfigMap
 metadata:
   name: app-config
 data:
-  AWS_ACCESS_KEY: "AKIAS2LNCO4E53LPBWB7"
-  AWS_ACCESS_SECRET: "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"
-  BUCKET: "gorestapi"
-  REGION: "us-east-1"
+  AWS_ACCESS_KEY: "AKIAS2LNCO4EUVDTIBDX"
+  AWS_ACCESS_SECRET: "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"
+  BUCKET: "go-s3-api"
+  REGION: "us-east-2"
