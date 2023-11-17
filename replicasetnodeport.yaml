@@ -74,5 +74,5 @@ metadata:
 data:
   AWS_ACCESS_KEY: "AKIAS2LNCO4EUVDTIBDX"
   AWS_ACCESS_SECRET: "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"
-  BUCKET: "go-s3-api"
+  BUCKET: "mybucket-480b1f8"
   REGION: "us-east-2"
