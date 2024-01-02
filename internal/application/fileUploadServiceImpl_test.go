@@ -11,8 +11,11 @@ import (
 )
 
 func TestInitAws(t *testing.T) {
-	err := godotenv.Load("../../.env")
-	assert.Nil(t, err)
+	env := os.Getenv("ENV")
+	if env == "DEV" {
+		err := godotenv.Load("../../.env")
+		assert.Nil(t, err)
+	}
 
 	config := aws.Config{
 		Region:      aws.String(os.Getenv("REGION")),
