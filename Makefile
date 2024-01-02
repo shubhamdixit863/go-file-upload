@@ -21,3 +21,9 @@ dockerbuild:
 		docker push $(DOCKER_IMAGE_NAME)
 configureaws:
 	  aws eks --region $(AWS_REGION)  update-kubeconfig --name  $(CLUSTER_NAME)
+
+
+
+test:
+	  @echo "Running tests......"
+	  go test ./...
